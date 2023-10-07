@@ -1,0 +1,64 @@
+---
+import type { Coctail, Drink } from '../interface/drink';
+import Layout from "../layouts/Layout.astro";
+
+let searchQuery = '';
+let drinks: Drink[] = [];
+
+
+async function submit(e: SubmitEvent){
+    const res = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchQuery}`,{
+        method: 'GET',
+    })
+    const data = await res.json() as Coctail
+    drinks = data.drinks;
+
+}
+
+const handleInputChange = (event: InputEvent) => {
+    const target = event.target as HTMLInputElement;
+    searchQuery = target.value;
+}
+
+---
+
+<Layout title="Search" ><!-- onSubmit={submit} -->
+    <h1>Search Drinks 🍹</h1>
+    <form action="/search">
+        <input type="text" value=`${searchQuery}` placeholder="Search..." >
+        <button type="submit" >Search</button>
+    </form>
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        {
+            drinks.map((drink) => (
+                <article>
+                    <h2 class="text-2xl">{drink.strDrink}</h2>
+                    <img class="rounded" src={drink.strDrinkThumb} alt="{drink.strDrink}">
+                    <h3 class="text-xl mt-3">Ingredients:</h3>
+                    <div class="flex flow-row gap-2 mt-2 leading-3 flex-wrap">
+                        <p>{drink.strIngredient1}</p>
+                        <p>{drink.strIngredient2}</p>
+                        <p>{drink.strIngredient3}</p>
+                        <p>{drink.strIngredient4}</p>
+                        <p>{drink.strIngredient5}</p>
+                        <p>{drink.strIngredient6}</p>
+                        <p>{drink.strIngredient7}</p>
+                        <p>{drink.strIngredient8}</p>
+                        <p>{drink.strIngredient9}</p>
+                        <p>{drink.strIngredient10}</p>
+                        <p>{drink.strIngredient11}</p>
+                        <p>{drink.strIngredient12}</p>
+                        <p>{drink.strIngredient13}</p>
+                        <p>{drink.strIngredient14}</p>
+                        <p>{drink.strIngredient15}</p>
+                    </div>
+                    <h3 class="text-xl mt-2">Instructions:</h3>
+                        <p>{drink.strInstructions}</p>
+                    <h3 class="text-xl mt-2">Recommended Glass:</h3>
+                        <p>{drink.strGlass}</p>
+
+                </article>
+                ))
+        }
+    </div>
+</Layout>

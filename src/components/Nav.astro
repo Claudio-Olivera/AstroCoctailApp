@@ -1,0 +1,31 @@
+---
+import HeaderButton from "./HeaderButton.astro";
+import InfoSvg from "./InfoSvg.astro";
+import NewsSvg from "./NewsSvg.astro";
+import SearchSvg from "./SearchSvg.astro";
+import TipsSvg from "./TipsSvg.astro";
+---
+
+<nav
+    class="flex flex-col justify-between items-center w-full text-center md:flex-row"
+>
+    <HeaderButton  href="/about">
+        <InfoSvg slot="before-text"/>
+         About
+    </HeaderButton>
+
+    <HeaderButton  href="/tips">
+        <TipsSvg slot="before-text"/>
+         Tips
+    </HeaderButton>
+
+    <HeaderButton  href="/news">
+        <NewsSvg slot="before-text"/>
+         News
+    </HeaderButton>
+
+    <HeaderButton class="text-white" href="/search">
+        <SearchSvg slot="before-text"/>
+        Search
+    </HeaderButton>
+</nav>
