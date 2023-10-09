@@ -1,9 +1,15 @@
 ---
+import GetDrinks from '../components/GetDrinks';
 import Layout from '../layouts/Layout.astro';
+
 ---
 
-<Layout title="Coctails app">
-	La página principal de la app
+<Layout title="Search">
+
+    <h1 class="text-5xl text-center">Search Coctails 🍹</h1>
+    
+    <GetDrinks client:only  />
+   
 </Layout>
 
 <style>
