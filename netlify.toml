@@ -1,0 +1,7 @@
+[build]
+  command = "pnpm run build"
+  publish = "dist"
+
+[functions]
+  directory = "functions"
+  external_node_modules = ["@astrojs/internal-helpers/path", "mime", "path-to-regexp"]
